@@ -4,9 +4,11 @@ from typing import List
 
 
 def manhattan(n, board: List[int]):
+    # map 0 => 9 so sorting just works
     null_i = board.index(0)
     board[null_i] = len(board)
     correct_board = sorted(board)
+    
     score = 0
     for i in range(1, len(board) + 1):
         r = board.index(i)
