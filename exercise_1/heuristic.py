@@ -1,3 +1,4 @@
+from copy import copy
 from functools import reduce
 from math import floor
 from typing import List
@@ -5,6 +6,7 @@ from typing import List
 
 def manhattan(n, board: List[int]):
     # map 0 => 9 so sorting just works
+    board = copy(board)
     null_i = board.index(0)
     board[null_i] = len(board)
     correct_board = sorted(board)

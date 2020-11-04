@@ -46,3 +46,13 @@ class TestBoard(TestCase):
                           7, 8, 6])
         self.assertEqual(Board(3, [0, 2, 3, 1, 4, 5, 7, 8, 6]), board.neighbors[Board.Move.UP])
         self.assertEqual(None, board.neighbors[Board.Move.LEFT])
+
+    def test_hashing_and_equality(self):
+        board_set = {Board(3, [1, 2, 3,
+                               0, 4, 5,
+                               7, 8, 6])}
+
+        board_set.add(Board(3, [1, 2, 3,
+                                0, 4, 5,
+                                7, 8, 6]))
+        self.assertEqual(1, len(board_set))
