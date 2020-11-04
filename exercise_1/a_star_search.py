@@ -41,7 +41,12 @@ class AStar:
         while curr.element != self._root:
             moves.append(curr.move)
             curr = curr.parent
-        return moves
+        return list(reversed(moves))
+
+    def unique_states_seen(self):
+        if self._computed is False:
+            self._compute()
+        return max(self._queue.unique_seen() - 1, 0)  # edge case when r == g
 
     def _compute(self):
         root_node = Node(self._root, None, None)

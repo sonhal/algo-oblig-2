@@ -8,7 +8,7 @@ from exercise_1.heuristic import manhattan
 class TestAStar(TestCase):
 
     def test_init(self):
-        self.assertIsNotNone(AStar(lambda x: 1, Board(3, [1,2,3,4,5,6,7,8,0]), manhattan, Board(3, [1,2,3,4,5,6,7,8,0])))
+        self.assertIsNotNone(AStar(lambda x: 1, manhattan, Board(3, [1,2,3,4,5,6,7,8,0]),  Board(3, [1,2,3,4,5,6,7,8,0])))
 
     def test_shortest_with_no_move_needed(self):
         astar = AStar(lambda x, y: 1, manhattan, Board(3, [1, 2, 3, 4, 5, 6, 7, 8, 0]), Board(3, [1, 2, 3, 4, 5, 6, 7, 8, 0]))
@@ -26,7 +26,14 @@ class TestAStar(TestCase):
                       Board(3, [1, 2, 3,
                                 4, 0, 8,
                                 7, 6, 5]))
-        self.assertEqual([Board.Move.LEFT, Board.Move.UP, Board.Move.RIGHT, Board.Move.DOWN, Board.Move.LEFT, Board.Move.UP], astar.moves())
+        self.assertEqual([Board.Move.UP,
+                          Board.Move.LEFT,
+                          Board.Move.DOWN,
+                          Board.Move.RIGHT,
+                          Board.Move.UP,
+                          Board.Move.LEFT,
+                          ],
+                         astar.moves())
 
     def test_shortest_moves(self):
         astar = AStar(lambda x, y: 1, manhattan, Board(3, [1, 2, 3,
@@ -35,3 +42,11 @@ class TestAStar(TestCase):
                                                                                 4, 5, 3,
                                                                                 7, 8, 6]))
         self.assertEqual([Board.Move.UP, Board.Move.UP], astar.moves())
+
+    def test_unique_states_seen(self):
+        astar = AStar(lambda x, y: 1, manhattan, Board(3, [1, 2, 3,
+                                                           4, 5, 6,
+                                                           7, 8, 0]), Board(3, [1, 2, 0,
+                                                                                4, 5, 3,
+                                                                                7, 8, 6]))
+        self.assertEqual(19, astar.unique_states_seen())

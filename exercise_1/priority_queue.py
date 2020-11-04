@@ -24,10 +24,13 @@ class PriorityQueue:
         self._pq = []  # list of entries arranged in a heap
         self._node_finder: Dict[Prioritized] = {}  # mapping of tasks to entries
         self._counter = itertools.count()  # unique sequence count
+        self._unique_counter = 0
 
     def enqueue(self, priority, element):
         if element in self._node_finder:
             self._remove_element(element)
+        else:
+            self._unique_counter += 1
         count = next(self._counter)
         node = Prioritized(priority, count, element)
         self._node_finder[element] = node
@@ -45,8 +48,8 @@ class PriorityQueue:
                 return node.element
         raise KeyError(f"pop from empty {self.__class__}")
 
-    def priority(self, element):
-        return self._node_finder[element].priority
+    def unique_seen(self):
+        return self._unique_counter
 
     def __len__(self):
         return len(self._pq)
