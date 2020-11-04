@@ -14,6 +14,9 @@ class Board:
         UP = 3
         DOWN = 4
 
+        def __str__(self):
+            return str(self.name[0:1])
+
     def __init__(self, n, tiles: List[int]):
         validate_board(n, tiles)
         self._n = n

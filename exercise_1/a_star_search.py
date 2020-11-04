@@ -1,7 +1,5 @@
-import heapq
-import math
 from dataclasses import dataclass, field
-from typing import Callable, List, Any, Hashable
+from typing import Callable, List, Any
 
 from exercise_1.board import Board
 from exercise_1.priority_queue import PriorityQueue
