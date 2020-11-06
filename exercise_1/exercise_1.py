@@ -16,7 +16,7 @@ class Exercise1:
         moves_str = "".join(str(move) for move in astar.moves())
         return rapport_tiles(self._n, self._root) + \
                f"Solution: {len(astar.moves())}, " + moves_str + "\n" + \
-               f"States seen: {astar.unique_states_seen()}"
+               f"States seen: {astar.unique_states_seen()}\n"
 
     def _parse_n(self, input_text):
         return int(input_text.split()[0])
@@ -28,6 +28,6 @@ class Exercise1:
 def rapport_tiles(n, tiles) -> str:
     tiles_str = ""
     for i in range(n):
-        tiles_str += "".join(str(tile) + " " for tile in tiles[:n]) + "\n"
+        tiles_str += " ".join(str(tile) for tile in tiles[:n]) + "\n"
         tiles = tiles[n:]
     return tiles_str

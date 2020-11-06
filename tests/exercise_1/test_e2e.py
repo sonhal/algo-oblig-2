@@ -9,12 +9,11 @@ test_input = """
 7 8 6
 """
 
-test_output = """
-1 2 3
+test_output = """1 2 3
 0 4 5
 7 8 6
 Solution: 3, RRD
-States seen: 7
+States seen: 48
 """
 
 test_input_8p = """
@@ -25,13 +24,12 @@ test_input_8p = """
 13 14 15 12
 """
 
-test_output_8p = """
-1 2 3 4
-5 6 7 8
-9 10 11 12
-13 14 15 0
-Solution: 3, RRD
-States seen: 7
+test_output_8p = """1 2 0 4
+5 6 3 7
+9 10 11 8
+13 14 15 12
+Solution: 4, DRDD
+States seen: 235
 """
 
 
