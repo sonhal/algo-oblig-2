@@ -53,21 +53,16 @@ class AStar:
         while len(self._queue) > 0:
             # deqeue cheapest node(v) where value = f(v)
             v: Node = self._queue.dequeue()
-            # push v onto done
             self._done.append(v)
             if v.element == self._goal:
-                return self._done
-            # for all neighbor nodes(w) of node(v) that is not in done
+                return
             for w in v.neighbors:
                 if w not in self._queue:
                     cost = self._f(v, w)
                     self._queue.enqueue(cost, w)
                     self._cost_cache[w] = cost
 
-                # else if f(w) >= g(v) + c(v, w) + h(w)
                 elif self._cost_cache[w] >= self._f(v, w):
-                    # reset parent pointer of w to v and update priority value of w to f(w) = g(w) + h(w)
-                    # where g(w) = g(v) + c(v, w)
                     cost = self._f(v, w)
                     self._queue.enqueue(cost, w)
                     self._cost_cache[w] = cost

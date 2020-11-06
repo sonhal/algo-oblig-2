@@ -50,3 +50,4 @@ class TestAStar(TestCase):
                                                                                 4, 5, 3,
                                                                                 7, 8, 6]))
         self.assertEqual(19, astar.unique_states_seen())
+

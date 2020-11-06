@@ -20,10 +20,16 @@ class Board:
     def __init__(self, n, tiles: List[int]):
         validate_board(n, tiles)
         self._n = n
-        self._tiles = tiles
+        self._tiles = copy(tiles)
         self._blank_index = tiles.index(BLANK_TILE_SYMBOL)
         self._neighbors: Dict = None
         self._parent = None
+
+    @classmethod
+    def goal(cls, n):
+        tiles = [tile for tile in range(1, n*n)]
+        tiles.append(0)
+        return Board(n, tiles)
 
     @property
     def neighbors(self) -> List[Tuple["Move", "Board"]]:
@@ -60,12 +66,12 @@ class Board:
     def move_up(self):
         if self._blank_y() == 0:
             return None
-        return Board(self._n, switch(self._tiles, self._blank_index, self._blank_index - 3))
+        return Board(self._n, switch(self._tiles, self._blank_index, self._blank_index - self._n))
 
     def move_down(self):
         if self._blank_y() == self._n - 1:
             return None
-        return Board(self._n, switch(self._tiles, self._blank_index, self._blank_index + 3))
+        return Board(self._n, switch(self._tiles, self._blank_index, self._blank_index + self._n))
 
     def _blank_x(self):
         return self._blank_index % self._n

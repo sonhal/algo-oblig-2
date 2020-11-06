@@ -39,6 +39,14 @@ class TestBoard(TestCase):
 
         board = Board(3, [1, 2, 3, 7, 4, 5, 0, 8, 6])
         self.assertEqual(None, board.move_down())
+        board = Board(4, [1, 2, 3, 4,
+                          5, 6, 7, 8,
+                          9, 10, 11, 0,
+                          13, 14, 15, 12])
+        self.assertEqual(Board(4, [1, 2, 3, 4,
+                          5, 6, 7, 8,
+                          9, 10, 11, 12,
+                          13, 14, 15, 0]), board.move_down())
 
     def test_neighbors(self):
         board = Board(3, [1, 2, 3,
