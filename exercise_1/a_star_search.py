@@ -55,6 +55,7 @@ class AStar:
             v: Node = self._queue.dequeue()
             self._done.append(v)
             if v.element == self._goal:
+                self._computed = True
                 return
             for w in v.neighbors:
                 if w not in self._queue:
