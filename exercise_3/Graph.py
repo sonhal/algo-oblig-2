@@ -29,6 +29,9 @@ class Node:
     def residual(self, node: "Node"):
         return self._capacity[node._index] - self._flow[node._index]
 
+    def maxed(self, ):
+        return all(self._flow[i] == self._capacity[i] for i in range(len(self._capacity)) if self._capacity[i] > 0 )
+
     def _validate(self):
         if self._capacity[0] != 0:
             raise ValueError(f"Node capacity edges={self._capacity} edge to source is not 0")
@@ -38,6 +41,9 @@ class Node:
     def edges(self, graph) -> List["Node"]:
         return [node for i, node in enumerate(graph) if self._capacity[i] > 0]
 
+    def __str__(self):
+        return f"Node(i={self._index}, cap={self._capacity}, flow={self._flow}"
+
 
 class Graph:
     """Understands capacity flow in a directed graph"""
@@ -46,6 +52,9 @@ class Graph:
         self._nodes: List[Node] = self._create_nodes(config)
         self._source = self._nodes[0]
         self._sink = self._nodes[-1]
+        self._bfs_runs = 0
+        self._computed = False
+        self._max_flow = None
 
     def _create_nodes(self, config) -> List[Node]:
         self._validate(config)
@@ -60,7 +69,35 @@ class Graph:
                 raise ValueError(f"number of edges={len(node_edges)} is not equal to number of nodes={len(config)}")
 
     def max_flow(self):
-        return self._ford_fulkerson()
+        if not self._computed:
+            self._ford_fulkerson()
+        return self._max_flow
+
+    def steps(self):
+        if not self._computed:
+            self._ford_fulkerson()
+        return self._bfs_runs
+
+    def flow_graph(self):
+        if not self._computed:
+            self._ford_fulkerson()
+        return [[node.flow(node_i) for node_i in self._nodes] for node in self._nodes]
+
+    def maxed(self):
+        if not self._computed:
+            self._ford_fulkerson()
+        maxed_cut = [self._source]
+        queue = []
+        cur = self._source
+        while cur != self._sink:
+            for node in cur.edges(self._nodes):
+                if node != self._sink and node.maxed():
+                    maxed_cut.append(node)
+                    queue.append(node)
+            if not queue:
+                break
+            cur = queue.pop()
+        return sorted([node._index for node in maxed_cut])
 
     def _ford_fulkerson(self):
         max_flow = 0
@@ -81,9 +118,11 @@ class Graph:
                 u.set_flow(cur, u.flow(cur) + path_flow)
                 cur = augmenting_path[cur]
 
-        return max_flow
+        self._computed = True
+        self._max_flow = max_flow
 
     def _bfs(self) -> Mapping:
+        self._bfs_runs += 1
         parent = {node: None for node in self._nodes}
         visited = {node: False for node in self._nodes}
         queue: List[Node] = [self._source]
@@ -99,8 +138,10 @@ class Graph:
         return parent
 
 
-
-
-
-
+def has_edge_to(graph: List[Node], node: Node) -> List[Node]:
+    has_edge = []
+    for inode in graph:
+        if node in inode.edges(graph):
+            has_edge.append(inode)
+    return has_edge
 

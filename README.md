@@ -45,6 +45,7 @@ optional arguments:
 ### Exercise 3 (Network Flow)
 Given a graph of capacities, give a output with the value of the optimal flow, 
 the flow over each edge, and a cut proving that the flow is optimal.
+**Note: Steps in the implementation is defined as number of times the BFS is computed over the graph
 
 Input
     - from file
