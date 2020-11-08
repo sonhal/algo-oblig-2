@@ -13,7 +13,7 @@ test_output = """1 2 3
 0 4 5
 7 8 6
 Solution: 3, RRD
-States seen: 48
+States seen: 24
 """
 
 test_input_8p = """
@@ -29,12 +29,11 @@ test_output_8p = """1 2 0 4
 9 10 11 8
 13 14 15 12
 Solution: 4, DRDD
-States seen: 235
+States seen: 129
 """
 
 
 class TestE2E(TestCase):
-
 
     def test_oblig_example(self):
         ex1 = Exercise1(test_input)
