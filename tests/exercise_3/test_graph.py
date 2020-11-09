@@ -53,7 +53,7 @@ class TestGraph(TestCase):
             [0, 0, 0, 10],
             [0, 0, 0, 5],
             [0, 0, 0, 0]])
-        self.assertEqual([0, 1, 2], g.maxed())
+        self.assertEqual([0, 1, 2], g.min_cut())
 
         g = Graph([
             [0, 10, 5, 2, 0],
@@ -61,6 +61,6 @@ class TestGraph(TestCase):
             [0, 0, 0, 0, 5],
             [0, 0, 0, 0, 10],
             [0, 0, 0, 0, 0]])
-        self.assertEqual([0, 1, 2], g.maxed())
+        self.assertEqual([0, 1, 2], g.min_cut())
 
 

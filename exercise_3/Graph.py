@@ -83,21 +83,11 @@ class Graph:
             self._ford_fulkerson()
         return [[node.flow(node_i) for node_i in self._nodes] for node in self._nodes]
 
-    def maxed(self):
+    def min_cut(self):
         if not self._computed:
             self._ford_fulkerson()
-        maxed_cut = [self._source]
-        queue = []
-        cur = self._source
-        while cur != self._sink:
-            for node in cur.edges(self._nodes):
-                if node != self._sink and node.maxed():
-                    maxed_cut.append(node)
-                    queue.append(node)
-            if not queue:
-                break
-            cur = queue.pop()
-        return sorted([node._index for node in maxed_cut])
+        cut = self._dfs(self._sink)
+        return sorted([node._index for node, visited in cut.items() if visited is False])
 
     def _ford_fulkerson(self):
         max_flow = 0
@@ -136,6 +126,15 @@ class Graph:
                     visited[node] = True
                     parent[node] = cur
         return parent
+
+    def _dfs(self, s: Node, visited=None):
+        if visited is None:
+            visited = {node: False for node in self._nodes}
+        visited[s] = True
+        for node in has_edge_to(self._nodes, s):
+            if node.residual(s) > 0 and not visited[node]:
+                self._dfs(node, visited)
+        return visited
 
 
 def has_edge_to(graph: List[Node], node: Node) -> List[Node]:
