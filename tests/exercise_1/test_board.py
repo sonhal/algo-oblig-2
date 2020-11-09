@@ -52,8 +52,8 @@ class TestBoard(TestCase):
         board = Board(3, [1, 2, 3,
                           0, 4, 5,
                           7, 8, 6])
-        self.assertEqual(Board(3, [0, 2, 3, 1, 4, 5, 7, 8, 6]), board.neighbors[Board.Move.UP])
-        self.assertEqual(None, board.neighbors[Board.Move.LEFT])
+        self.assertIn(Board(3, [0, 2, 3, 1, 4, 5, 7, 8, 6]), [node for move, node in board.neighbors])
+        self.assertEqual(0, len([node for move, node in board.neighbors if move == Board.Move.LEFT]))
 
     def test_hashing_and_equality(self):
         board_set = {Board(3, [1, 2, 3,

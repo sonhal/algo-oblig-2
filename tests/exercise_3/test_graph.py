@@ -9,7 +9,8 @@ class TestGraph(TestCase):
         Graph([
             [0, 5, 2, 0],
             [0, 0, 0, 3],
-            [0, 0, 0, 5]])
+            [0, 0, 0, 5],
+            [0, 0, 0, 0]])
 
     def test_number_of_nodes(self):
         g = Graph([
