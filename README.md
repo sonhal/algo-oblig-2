@@ -2,8 +2,12 @@
 ## Oblig 2
 
 **IMPORTANT**
-
-
+Solution uses the Python dataclass annotation. To run the code with a Python interpreter < 3.7
+remember to run:
+```bash
+pip3 install -r --user requirements.txt
+```
+On UiO VM's the --user flag is required.
 
 ### Exercise 1 (A*)
 *Build a A\* program*
