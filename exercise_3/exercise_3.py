@@ -28,7 +28,7 @@ class Exercise3:
         return f"Max Flow: {g.max_flow()}\n" +\
                f"Cut: {' '.join(str(node) for node in g.min_cut())}\n" +\
                f"Steps: {g.steps()}\n" + \
-               self._rapport_graph(g.flow_graph()).rstrip().lstrip()
+               self._rapport_graph(g.flow_graph()).lstrip()
 
     def _rapport_graph(self, flow_graph) -> str:
         graph_str = ""

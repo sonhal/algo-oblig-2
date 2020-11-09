@@ -9,7 +9,7 @@ test_input = """
 0 2 0 0 6
 0 0 1 0 1
 0 0 0 0 0
-""".lstrip().rstrip()
+""".lstrip()
 
 expected_output = """
 Max Flow: 4
@@ -20,7 +20,7 @@ Steps: 5
 0 0 0 0 3
 0 0 1 0 1
 0 0 0 0 0
-""".lstrip().rstrip()
+""".lstrip()
 
 
 class TestExercise3(TestCase):
