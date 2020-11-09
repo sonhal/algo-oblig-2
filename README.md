@@ -15,7 +15,6 @@
 **Game Rules**
 - let the empty square "switch place" with one of the (max 4)
 neighbouring tiles. a move can be L, R, U, D (left, right, up, down).
--  
 
 **Example: N=3**
 Here 0 indicates the empty square.

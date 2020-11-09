@@ -91,7 +91,7 @@ class Graph:
 
     def _ford_fulkerson(self):
         max_flow = 0
-        while augmenting_path := self._bfs():
+        while augmenting_path = self._bfs():
             if augmenting_path[self._sink] is None:
                 break  # No more augmenting paths
             path_flow = inf
