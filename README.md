@@ -46,36 +46,18 @@ optional arguments:
 Given a graph of capacities, give a output with the value of the optimal flow, 
 the flow over each edge, and a cut proving that the flow is optimal.
 **Note: Steps in the implementation is defined as number of times the BFS is computed over the graph
+**Min cut uses Depth-First search**
 
-Input
-    - from file
-    - output file
-    - input file
-        - first line: number of nodes m.
-        - following first line: m lines with m numbers each (matrix) defining the 
-        capacities between each pair of nodes. number on (i, j) is the capacity from node i to j (edge i,j)
-        - Nodes[0: m-1] where 0 is source and m-1 is sink
-        - no edges goes to source (column 0 is all 0's) and no edges goes from sink (row m -1 is all 0's)
-        
-Output
-    - Line with value of optimal flow
-    - Line with nodes (by number, sorted) on the source side of a cut with capacity of optimal flow. Source node included
-    - number of steps used to obtain the optimal flow (migth vary)
-    - m x m lines with where cells are filled with flow number, same format as input
-        
-            
+```bash
+usage: python -m exercise_3  [-h] in_file out_file
 
-Graph
-    - Directed graph
-    - capacaty from v to w can be different from w to v
-    - capacities: non-neg int
-    - vertex = node
- 
+Use Ford-Fulkerson algorithm to find maximum flow and minimum cut in a digraph
 
- 
-Flow graph
-    Node
-        - has capacity
-        - flow (capasity used)
-        - flow/capasity
-        
+positional arguments:
+  in_file     File with problem edges
+  out_file    output file name
+
+optional arguments:
+  -h, --help  show this help message and exit
+
+```
