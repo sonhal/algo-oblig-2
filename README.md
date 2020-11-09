@@ -46,8 +46,9 @@ optional arguments:
 Given a graph of capacities, give a output with the value of the optimal flow, 
 the flow over each edge, and a cut proving that the flow is optimal.
 
-**Note: Steps in the implementation is defined as number of times the BFS is computed over the graph**
-**Min cut uses Depth-First search**
+**Note:** 
+- Steps in the implementation is defined as number of times the BFS is computed over the graph.
+- Min cut uses Depth-First search.
 
 ```bash
 usage: python -m exercise_3  [-h] in_file out_file
