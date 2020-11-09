@@ -1,6 +1,10 @@
 # Algorithm: Design and Efficiency 
 ## Oblig 2
 
+**IMPORTANT**
+
+
+
 ### Exercise 1 (A*)
 *Build a A\* program*
 *Move the tiles in a way that ends up in the final state*
